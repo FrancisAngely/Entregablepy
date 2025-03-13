@@ -1,0 +1,106 @@
+<div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
+  <div class="offcanvas-md offcanvas-end bg-body-tertiary" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="sidebarMenuLabel">Company Name</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="{% url 'index' %}">
+            <i class="fa-solid fa-house"></i> Dashboard
+          </a>
+        </li>
+      </ul>
+
+      <!-- Sección de Roles -->
+      <hr class="my-3">
+      <h5 class="px-3">Roles</h5>
+      <ul class="nav flex-column">
+        {% for role in roles %}
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center gap-2" href="{% url 'rol-detalle' role.id %}">
+            <i class="fa-solid fa-user-tag"></i> {{ role.nombre }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+
+      <!-- Sección de Usuarios -->
+      <hr class="my-3">
+      <h5 class="px-3">Usuarios</h5>
+      <ul class="nav flex-column">
+        {% for usuario in usuarios %}
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center gap-2" href="{% url 'usuario-detalle' usuario.id %}">
+            <i class="fa-solid fa-user"></i> {{ usuario.primer_nombre }} {{ usuario.apellido }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+
+      <!-- Sección de Estudiantes -->
+      <hr class="my-3">
+      <h5 class="px-3">Estudiantes</h5>
+      <ul class="nav flex-column">
+        {% for estudiante in estudiantes %}
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center gap-2" href="{% url 'estudiante-detalle' estudiante.id %}">
+            <i class="fa-solid fa-user-graduate"></i> {{ estudiante.primer_nombre }} {{ estudiante.apellido }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+
+      <!-- Sección de Módulos -->
+      <hr class="my-3">
+      <h5 class="px-3">Módulos</h5>
+      <ul class="nav flex-column">
+        {% for modulo in modulos %}
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center gap-2" href="{% url 'modulo-detalle' modulo.id %}">
+            <i class="fa-solid fa-chalkboard"></i> {{ modulo.nombre }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+
+      <!-- Sección de Notas -->
+      <hr class="my-3">
+      <h5 class="px-3">Notas</h5>
+      <ul class="nav flex-column">
+        {% for nota in notas %}
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center gap-2" href="{% url 'nota-detalle' nota.id %}">
+            <i class="fa-solid fa-clipboard-list"></i> Nota de {{ nota.estudiante.primer_nombre }}
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+
+      <!-- Usuario y Cerrar Sesión -->
+      <hr class="my-3">
+      <ul class="nav flex-column mb-auto">
+        {% if user.is_authenticated %}
+        <li class="nav-item px-3">
+          <i class="fa-solid fa-user"></i> Usuario: {{ user.usuario.primer_nombre }} {{ user.usuario.apellido }}
+        </li>
+        <li class="nav-item mb-5">
+          <form action="{% url 'logout' %}?next={{ request.path }}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btnSalir">
+              <i class="fa-solid fa-lock"></i> Cerrar sesión
+            </button>
+          </form>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center gap-2" href="{% url 'login' %}?next={{ request.path }}">
+            <i class="fa-solid fa-right-to-bracket"></i> Iniciar sesión
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Lista de libros</h1>
+    <a href="{% url 'book-create' %}">Nuevo</a>
+    {% if datos %}
+    <ul>
+
+      {% for book in datos %}
+      <li>
+        <a href="{{ book.get_absolute_url }}">{{ book.title }}</a> (<a href="{% url 'author-detail' book.author.pk %}"><strong>{{ book.author }}</strong></a>)
+      </li>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>No hay libros en la biblioteca prueba.</p>
+    {% endif %}
+{% endblock %}
