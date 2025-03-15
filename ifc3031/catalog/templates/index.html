@@ -1,22 +1,37 @@
-<!-- {% extends "base_generic.html" %}
+{% extends "base_generic.html" %}
 
 {% block content %}
-<h1>Local Library Home</h1>
+<div class="container mt-4">
+  <h1 class="mb-3">Bienvenido al Panel de Administración</h1>
+  <p>Este es el sistema de gestión donde puedes administrar estudiantes, notas, módulos, usuarios y roles.</p>
 
-  <p>Welcome to <em>LocalLibrary</em>, a very basic Django website developed as a tutorial example on the Mozilla Developer Network.</p>
-
-<h2>Dynamic content</h2>
-
-  <p>The library has the following record counts:</p>
-  <ul>
-    <li><strong>Books:</strong> {{ num_books }}</li>
-    <li><strong>Copies:</strong> {{ num_instances }}</li>
-    <li><strong>Copies available:</strong> {{ num_instances_available }}</li>
-    <li><strong>Authors:</strong> {{ num_authors }}</li>
-    <li><strong>Num Visitas:</strong> {{ num_visits }}</li>
+  <h2 class="mt-4">Resumen de registros</h2>
+  <p>El sistema contiene los siguientes datos:</p>
+  <ul class="list-group">
+      <li class="list-group-item"><strong>Estudiantes:</strong> {{ num_estudiantes }}</li>
+      <li class="list-group-item"><strong>Usuarios:</strong> {{ num_usuarios }}</li>
+      <li class="list-group-item"><strong>Roles:</strong> {{ num_roles }}</li>
+      <li class="list-group-item"><strong>Módulos:</strong> {{ num_modulos }}</li>
+      <li class="list-group-item"><strong>Notas registradas:</strong> {{ num_notas }}</li>
   </ul>
 
-{% endblock %} -->
-
-<!-- index.html -->
-<h1>Bienvenidos a la página de inicio</h1>
+  <h2 class="mt-4">Accesos rápidos</h2>
+  <div class="row">
+    <div class="col-md-4 mb-3">
+      <a href="{% url 'estudiantes' %}" class="btn btn-primary w-100"><i class="fa-solid fa-user-graduate"></i> Gestionar Estudiantes</a>
+    </div>
+    <div class="col-md-4 mb-3">
+      <a href="{% url 'usuarios' %}" class="btn btn-secondary w-100"><i class="fa-solid fa-user"></i> Gestionar Usuarios</a>
+    </div>
+    <div class="col-md-4 mb-3">
+      <a href="{% url 'roles' %}" class="btn btn-success w-100"><i class="fa-solid fa-user-tag"></i> Gestionar Roles</a>
+    </div>
+    <div class="col-md-4 mb-3">
+      <a href="{% url 'modulos' %}" class="btn btn-warning w-100"><i class="fa-solid fa-chalkboard"></i> Gestionar Módulos</a>
+    </div>
+    <div class="col-md-4 mb-3">
+      <a href="{% url 'notas' %}" class="btn btn-danger w-100"><i class="fa-solid fa-clipboard-list"></i> Gestionar Notas</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h2>Editar Rol: {{ object.nombre }}</h2>
+
+  <!-- Formulario para actualizar el rol -->
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }} <!-- Muestra el formulario -->
+    
+    <div class="form-actions">
+      <!-- Botón para guardar los cambios -->
+      <button type="submit" class="btn btn-primary">Guardar cambios</button>
+      <!-- Botón para cancelar y volver a la lista de roles -->
+      <a href="{% url 'roles' %}" class="btn btn-secondary">Cancelar</a>
+    </div>
+  </form>
+{% endblock %}

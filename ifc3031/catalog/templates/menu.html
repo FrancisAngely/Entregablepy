@@ -8,14 +8,14 @@
       <ul class="nav flex-column">
         <li class="nav-item">
           <a class="nav-link d-flex align-items-center gap-2 active" aria-current="page" href="{% url 'index' %}">
-            <i class="fa-solid fa-house"></i> Dashboard
-          </a>
+            <i class="fa-solid fa-house"></i> Dashboard</a>
         </li>
       </ul>
-
-      <!-- Sección de Roles -->
-      <hr class="my-3">
-      <h5 class="px-3">Roles</h5>
+      
+      <hr class="my-3" />
+      <a class="nav-link d-flex align-items-center gap-2 active" href="{% url 'roles' %}">
+        <i class="fa-solid fa-user-tag"></i> Roles
+      </a>
       <ul class="nav flex-column">
         {% for role in roles %}
         <li class="nav-item">
@@ -25,10 +25,11 @@
         </li>
         {% endfor %}
       </ul>
-
-      <!-- Sección de Usuarios -->
-      <hr class="my-3">
-      <h5 class="px-3">Usuarios</h5>
+      
+      <hr class="my-3" />
+      <a class="nav-link d-flex align-items-center gap-2 active" href="{% url 'usuarios' %}">
+        <i class="fa-solid fa-user"></i> Usuarios
+      </a>
       <ul class="nav flex-column">
         {% for usuario in usuarios %}
         <li class="nav-item">
@@ -38,10 +39,11 @@
         </li>
         {% endfor %}
       </ul>
-
-      <!-- Sección de Estudiantes -->
-      <hr class="my-3">
-      <h5 class="px-3">Estudiantes</h5>
+      
+      <hr class="my-3" />
+      <a class="nav-link d-flex align-items-center gap-2 active" href="{% url 'estudiantes' %}">
+        <i class="fa-solid fa-user-graduate"></i> Estudiantes
+      </a>
       <ul class="nav flex-column">
         {% for estudiante in estudiantes %}
         <li class="nav-item">
@@ -51,10 +53,11 @@
         </li>
         {% endfor %}
       </ul>
-
-      <!-- Sección de Módulos -->
-      <hr class="my-3">
-      <h5 class="px-3">Módulos</h5>
+      
+      <hr class="my-3" />
+      <a class="nav-link d-flex align-items-center gap-2 active" href="{% url 'modulos' %}">
+        <i class="fa-solid fa-chalkboard"></i> Módulos
+      </a>
       <ul class="nav flex-column">
         {% for modulo in modulos %}
         <li class="nav-item">
@@ -64,10 +67,11 @@
         </li>
         {% endfor %}
       </ul>
-
-      <!-- Sección de Notas -->
-      <hr class="my-3">
-      <h5 class="px-3">Notas</h5>
+      
+      <hr class="my-3" />
+      <a class="nav-link d-flex align-items-center gap-2 active" href="{% url 'notas' %}">
+        <i class="fa-solid fa-clipboard-list"></i> Notas
+      </a>
       <ul class="nav flex-column">
         {% for nota in notas %}
         <li class="nav-item">
@@ -77,9 +81,8 @@
         </li>
         {% endfor %}
       </ul>
-
-      <!-- Usuario y Cerrar Sesión -->
-      <hr class="my-3">
+      
+      <hr class="my-3" />
       <ul class="nav flex-column mb-auto">
         {% if user.is_authenticated %}
         <li class="nav-item px-3">

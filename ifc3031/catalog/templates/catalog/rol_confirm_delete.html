@@ -1,0 +1,19 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h2>¿Estás seguro de que deseas eliminar el rol "{{ object.nombre }}"?</h2>
+  
+  <!-- Mostrar un mensaje de advertencia o confirmación -->
+  <p>Esta acción no se puede deshacer.</p>
+
+  <!-- Formulario para confirmar la eliminación -->
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-actions">
+      <!-- Botón para confirmar la eliminación -->
+      <button type="submit" class="btn btn-danger">Eliminar</button>
+      <!-- Botón para cancelar y volver a la lista de roles -->
+      <a href="{% url 'roles' %}" class="btn btn-secondary">Cancelar</a>
+    </div>
+  </form>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1>Actualizar Usuario</h1>
+
+    <!-- Formulario para actualizar usuario -->
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-success">Actualizar</button>
+        <a href="{% url 'usuarios' %}" class="btn btn-secondary">Cancelar</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}

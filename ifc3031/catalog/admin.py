@@ -1,5 +1,6 @@
 from django.contrib import admin
 
+
 # Importar los modelos adaptados a la base de datos
 from .models import Rol, Usuario, Estudiante, Modulo, Nota  # Nombres en español
 
@@ -10,9 +11,10 @@ class RolAdmin(admin.ModelAdmin):
 
 @admin.register(Usuario)
 class UsuarioAdmin(admin.ModelAdmin):
-    list_display = ('id', 'correo', 'primer_nombre', 'apellido', 'rol', 'creado_en', 'actualizado_en')
+    list_display = ('id', 'correo', 'password', 'primer_nombre', 'apellido', 'rol', 'creado_en', 'actualizado_en')
     list_filter = ('rol',)
     search_fields = ('correo', 'primer_nombre', 'apellido')
+
 
 # admin.py
 from django.contrib import admin
@@ -39,4 +41,5 @@ class NotaAdmin(admin.ModelAdmin):
     list_filter = ('modulo', 'nota')
 
 admin.site.register(Nota, NotaAdmin)
+
 

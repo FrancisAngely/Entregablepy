@@ -1,0 +1,38 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h2>{% if object %}Actualizar Estudiante{% else %}Crear Estudiante{% endif %}</h2>
+  
+  <form method="post">
+    {% csrf_token %}
+    
+    <!-- Mostrar errores de validación del formulario -->
+    <div class="form-errors">
+      {% for field in form %}
+        {% for error in field.errors %}
+          <p class="error">{{ error }}</p>
+        {% endfor %}
+      {% endfor %}
+    </div>
+
+    <!-- Campo para el primer nombre del estudiante -->
+    <div class="form-group">
+      <label for="{{ form.primer_nombre.id_for_label }}">Primer Nombre</label>
+      {{ form.primer_nombre }}
+      <p class="help-text">Ingrese el primer nombre del estudiante.</p>
+    </div>
+
+    <!-- Campo para el apellido del estudiante -->
+    <div class="form-group">
+      <label for="{{ form.apellido.id_for_label }}">Apellido</label>
+      {{ form.apellido }}
+      <p class="help-text">Ingrese el apellido del estudiante.</p>
+    </div>
+
+    <!-- Botones de acción -->
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">{% if object %}Actualizar{% else %}Crear{% endif %} Estudiante</button>
+      <a href="{% url 'estudiantes' %}" class="btn btn-secondary">Cancelar</a>
+    </div>
+  </form>
+{% endblock %}

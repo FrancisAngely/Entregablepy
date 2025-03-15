@@ -2,6 +2,9 @@ from django.db import models
 from datetime import date
 import uuid
 
+from django.urls import reverse
+
+
 class Rol(models.Model):
     nombre = models.CharField(max_length=100, unique=True)
     creado_en = models.DateTimeField(auto_now_add=True)
@@ -14,6 +17,7 @@ class Usuario(models.Model):
     correo = models.EmailField(unique=True)
     primer_nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=100)
+    password = models.CharField(max_length=128)  # Vuelve a hacer que el campo sea obligatorio
     rol = models.ForeignKey(Rol, on_delete=models.SET_NULL, null=True)
     creado_en = models.DateTimeField(auto_now_add=True)
     actualizado_en = models.DateTimeField(auto_now=True)
@@ -21,12 +25,19 @@ class Usuario(models.Model):
     def __str__(self):
         return self.correo
 
-
 class Estudiante(models.Model):
     primer_nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=100)
     creado_en = models.DateTimeField(auto_now_add=True)
     actualizado_en = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['primer_nombre', 'apellido'], name='unique_estudiante')
+        ]
+
+    def get_absolute_url(self):
+        return reverse('estudiante-detalle', kwargs={'pk': self.pk})  # Redirige a la vista de detalle del estudiante
 
     def __str__(self):
         return f'{self.primer_nombre} {self.apellido}'

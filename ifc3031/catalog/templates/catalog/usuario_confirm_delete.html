@@ -1,0 +1,17 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1>Confirmar Eliminación</h1>
+
+    <p>¿Estás seguro de que deseas eliminar el usuario {{ usuario.correo }}?</p>
+
+    <div class="form-group">
+      <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a href="{% url 'usuarios' %}" class="btn btn-secondary">Cancelar</a>
+      </form>
+    </div>
+  </div>
+{% endblock %}

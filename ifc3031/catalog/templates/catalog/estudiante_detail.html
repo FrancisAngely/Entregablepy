@@ -1,0 +1,21 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h2>Detalles del Estudiante: {{ object.primer_nombre }} {{ object.apellido }}</h2>
+
+  <div>
+    <p><strong>Primer Nombre:</strong> {{ object.primer_nombre }}</p>
+    <p><strong>Apellido:</strong> {{ object.apellido }}</p>
+    <p><strong>Creado el:</strong> {{ object.creado_en }}</p>
+    <p><strong>Actualizado el:</strong> {{ object.actualizado_en }}</p>
+  </div>
+
+  <div class="form-actions">
+    <!-- Botón para editar el estudiante -->
+    <a href="{% url 'estudiante-actualizar' object.pk %}" class="btn btn-primary">Editar</a>
+    <!-- Botón para eliminar el estudiante -->
+    <a href="{% url 'estudiante-eliminar' object.pk %}" class="btn btn-danger">Eliminar</a>
+    <!-- Botón para volver a la lista de estudiantes -->
+    <a href="{% url 'estudiantes' %}" class="btn btn-secondary">Volver a la lista</a>
+  </div>
+{% endblock %}

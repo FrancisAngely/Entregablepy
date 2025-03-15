@@ -2,6 +2,9 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+
+    path('', views.index, name='index'),
+
     # Rutas de Estudiantes
     path('', views.index, name='index'),  # Página de inicio
     path('estudiantes/', views.EstudianteListView.as_view(), name='estudiantes'),
@@ -35,6 +38,6 @@ urlpatterns = [
     path('roles/', views.RolListView.as_view(), name='roles'),
     path('rol/<int:pk>/', views.RolDetailView.as_view(), name='rol-detalle'),
     path('rol/crear/', views.RolCreate.as_view(), name='rol-crear'),
-    path('rol/<int:pk>/actualizar/', views.RolUpdate.as_view(), name='rol-actualizar'),
+    path('rol/<int:pk>/actualizar/', views.RolUpdateView.as_view(), name='rol-actualizar'),
     path('rol/<int:pk>/eliminar/', views.RolDelete.as_view(), name='rol-eliminar'),
 ]

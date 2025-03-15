@@ -1,0 +1,31 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h2>{% if object %}Actualizar Rol{% else %}Crear Rol{% endif %}</h2>
+  
+  <form method="post">
+    {% csrf_token %}
+    
+    <!-- Mostrar errores de validación del formulario -->
+    <div class="form-errors">
+      {% for field in form %}
+        {% for error in field.errors %}
+          <p class="error">{{ error }}</p>
+        {% endfor %}
+      {% endfor %}
+    </div>
+
+    <!-- Campo para el nombre del rol -->
+    <div class="form-group">
+      <label for="{{ form.nombre.id_for_label }}">Nombre del Rol</label>
+      {{ form.nombre }}
+      <p class="help-text">Ingrese el nombre del rol.</p>
+    </div>
+
+    <!-- Botones de acción -->
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">{% if object %}Actualizar{% else %}Crear{% endif %} Rol</button>
+      <a href="{% url 'roles' %}" class="btn btn-secondary">Cancelar</a>
+    </div>
+  </form>
+{% endblock %}

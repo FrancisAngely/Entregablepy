@@ -1,0 +1,44 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1>Detalles del Usuario</h1>
+
+    <table class="table table-bordered">
+      <tr>
+        <th>Correo</th>
+        <td>{{ usuario.correo }}</td>
+      </tr>
+      <tr>
+        <th>Primer Nombre</th>
+        <td>{{ usuario.primer_nombre }}</td>
+      </tr>
+      <tr>
+        <th>Apellido</th>
+        <td>{{ usuario.apellido }}</td>
+      </tr>
+      <tr>
+        <th>Password</th>
+        <td>{{ usuario.password }}</td>
+      </tr>
+      <tr>
+        <th>Rol</th>
+        <td>{{ usuario.rol }}</td>
+      </tr>
+      <tr>
+        <th>Fecha de Creación</th>
+        <td>{{ usuario.creado_en }}</td>
+      </tr>
+      <tr>
+        <th>Fecha de Última Actualización</th>
+        <td>{{ usuario.actualizado_en }}</td>
+      </tr>
+    </table>
+
+    <div class="form-group">
+      <a href="{% url 'usuario-actualizar' pk=usuario.pk %}" class="btn btn-warning">Actualizar</a>
+      <a href="{% url 'usuario-eliminar' pk=usuario.pk %}" class="btn btn-danger">Eliminar</a>
+      <a href="{% url 'usuarios' %}" class="btn btn-secondary">Volver a la lista</a>
+    </div>
+  </div>
+{% endblock %}
