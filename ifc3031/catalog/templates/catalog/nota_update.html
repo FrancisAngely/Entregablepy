@@ -1,7 +1,7 @@
 {% extends 'base_generic.html' %}
 
 {% block content %}
-  <h2>Actualizar Estudiante: {{ object.primer_nombre }} {{ object.apellido }}</h2>
+  <h2>Actualizar Nota de {{ object.estudiante }} en {{ object.modulo }}</h2>
 
   <!-- Mostrar errores de validación -->
   {% if form.errors %}
@@ -16,7 +16,7 @@
     </div>
   {% endif %}
 
-  <!-- Formulario para actualizar el estudiante -->
+  <!-- Formulario para actualizar la nota -->
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }} <!-- Muestra los campos del formulario como párrafos -->
@@ -26,8 +26,8 @@
       <button type="submit" class="btn btn-primary btn-lg">
         <i class="bi bi-save"></i> Guardar cambios
       </button>
-      <!-- Botón para cancelar y volver a la lista de estudiantes -->
-      <a href="{% url 'estudiantes' %}" class="btn btn-secondary btn-lg">
+      <!-- Botón para cancelar y volver a la lista de notas -->
+      <a href="{% url 'notas' %}" class="btn btn-secondary btn-lg">
         <i class="bi bi-arrow-left"></i> Cancelar
       </a>
     </div>

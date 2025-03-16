@@ -148,13 +148,13 @@ class NotaDetailView(DetailView):
 # Crear nota
 class NotaCreate(CreateView):
     model = Nota
-    fields = ['student', 'module', 'grade']  # Definimos los campos correspondientes
+    fields = ['estudiante', 'modulo', 'nota']  # Definimos los campos correspondientes
     template_name = 'catalog/nota_form.html'
 
 # Actualizar nota
 class NotaUpdate(UpdateView):
     model = Nota
-    fields = ['student', 'module', 'grade']  # Definimos los campos correspondientes
+    fields = ['estudiante', 'modulo', 'nota']  # Definimos los campos correspondientes
     template_name = 'catalog/nota_update.html'
 
 # Eliminar nota

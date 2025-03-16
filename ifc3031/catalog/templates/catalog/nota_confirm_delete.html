@@ -1,7 +1,7 @@
 {% extends 'base_generic.html' %}
 
 {% block content %}
-  <h2>¿Estás seguro de que deseas eliminar el estudiante "{{ object.primer_nombre }}"?</h2>
+  <h2>¿Estás seguro de que deseas eliminar la nota de "{{ object.estudiante }}" en "{{ object.modulo }}"?</h2>
   
   <!-- Mostrar un mensaje de advertencia o confirmación -->
   <p>Esta acción no se puede deshacer.</p>
@@ -12,8 +12,8 @@
     <div class="form-actions">
       <!-- Botón para confirmar la eliminación -->
       <button type="submit" class="btn btn-danger">Eliminar</button>
-      <!-- Botón para cancelar y volver a la lista de roles -->
-      <a href="{% url 'estudiantes' %}" class="btn btn-secondary">Cancelar</a>
+      <!-- Botón para cancelar y volver a la lista de notas -->
+      <a href="{% url 'notas' %}" class="btn btn-secondary">Cancelar</a>
     </div>
   </form>
 {% endblock %}

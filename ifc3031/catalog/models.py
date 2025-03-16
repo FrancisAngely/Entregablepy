@@ -2,6 +2,7 @@ from django.db import models
 from datetime import date
 import uuid
 
+from django.forms import ValidationError
 from django.urls import reverse
 
 
@@ -50,13 +51,19 @@ class Modulo(models.Model):
     def __str__(self):
         return self.nombre
 
-
+def validar_nota(value):
+    if value < 0 or value > 10:
+        raise ValidationError('La nota debe estar entre 0 y 10.')
+    
 class Nota(models.Model):
     estudiante = models.ForeignKey(Estudiante, on_delete=models.CASCADE)
     modulo = models.ForeignKey(Modulo, on_delete=models.CASCADE)
-    nota = models.DecimalField(max_digits=5, decimal_places=2)
+    nota = models.DecimalField(max_digits=5, decimal_places=2, validators=[validar_nota])  # Validación a nivel de BD
     creado_en = models.DateTimeField(auto_now_add=True)
     actualizado_en = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return f'Nota de {self.estudiante} en {self.modulo}'
+
+    def get_absolute_url(self):
+        return reverse('nota-detalle', args=[str(self.id)])  # Redirige al detalle de la nota

@@ -1,7 +1,7 @@
 {% extends 'base_generic.html' %}
 
 {% block content %}
-  <h2>{% if object %}Actualizar Estudiante{% else %}Crear Estudiante{% endif %}</h2>
+  <h2>{% if object %}Actualizar Nota{% else %}Crear Nota{% endif %}</h2>
   
   <form method="post">
     {% csrf_token %}
@@ -20,24 +20,28 @@
     </div>
     {% endif %}
 
-    <!-- Campo para el primer nombre del estudiante -->
+    <!-- Campo para el estudiante -->
     <div class="form-group">
-      <label for="{{ form.primer_nombre.id_for_label }}">Primer Nombre</label>
-      {{ form.primer_nombre }}
-      <!-- <p class="help-text">Ingrese el primer nombre del estudiante.</p> -->
+      <label for="{{ form.estudiante.id_for_label }}">Estudiante</label>
+      {{ form.estudiante }}
     </div>
     <br>
-    <!-- Campo para el apellido del estudiante -->
+    <!-- Campo para el módulo -->
     <div class="form-group">
-      <label for="{{ form.apellido.id_for_label }}">Apellido</label>
-      {{ form.apellido }}
-      <!-- <p class="help-text">Ingrese el apellido del estudiante.</p> -->
+      <label for="{{ form.modulo.id_for_label }}">Módulo</label>
+      {{ form.modulo }}
+    </div>
+    <br>
+    <!-- Campo para la nota -->
+    <div class="form-group">
+      <label for="{{ form.nota.id_for_label }}">Nota</label>
+      {{ form.nota }}
     </div>
     <br>
     <!-- Botones de acción -->
     <div class="form-actions">
-      <button type="submit" class="btn btn-primary">{% if object %}Actualizar{% else %}Crear{% endif %} Estudiante</button>
-      <a href="{% url 'estudiantes' %}" class="btn btn-secondary">Cancelar</a>
+      <button type="submit" class="btn btn-primary">{% if object %}Actualizar{% else %}Crear{% endif %} Nota</button>
+      <a href="{% url 'notas' %}" class="btn btn-secondary">Cancelar</a>
     </div>
   </form>
 {% endblock %}

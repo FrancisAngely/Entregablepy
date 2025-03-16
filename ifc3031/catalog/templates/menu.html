@@ -86,7 +86,7 @@
       <ul class="nav flex-column mb-auto">
         {% if user.is_authenticated %}
         <li class="nav-item px-3">
-          <i class="fa-solid fa-user"></i> Usuario: {{ user.usuario.primer_nombre }} {{ user.usuario.apellido }}
+          <i class="fa-solid fa-user"></i> Usuario: {{ usuario.nombre }} {{ usuario.apellido }}
         </li>
         <li class="nav-item mb-5">
           <form action="{% url 'logout' %}?next={{ request.path }}" method="POST">

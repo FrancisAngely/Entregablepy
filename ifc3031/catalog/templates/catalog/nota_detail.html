@@ -1,21 +1,22 @@
 {% extends 'base_generic.html' %}
 
 {% block content %}
-  <h2>Detalles del Estudiante: {{ object.primer_nombre }} {{ object.apellido }}</h2>
+  <h2>Detalles de la Nota</h2>
 
   <div>
-    <p><strong>Primer Nombre:</strong> {{ object.primer_nombre }}</p>
-    <p><strong>Apellido:</strong> {{ object.apellido }}</p>
+    <p><strong>Estudiante:</strong> {{ object.estudiante }}</p>
+    <p><strong>Módulo:</strong> {{ object.modulo }}</p>
+    <p><strong>Nota:</strong> {{ object.nota }}</p>
     <p><strong>Creado el:</strong> {{ object.creado_en }}</p>
     <p><strong>Actualizado el:</strong> {{ object.actualizado_en }}</p>
   </div>
 
   <div class="form-actions">
-    <!-- Botón para editar el estudiante -->
-    <a href="{% url 'estudiante-actualizar' object.pk %}" class="btn btn-primary">Editar</a>
-    <!-- Botón para eliminar el estudiante -->
-    <a href="{% url 'estudiante-eliminar' object.pk %}" class="btn btn-danger">Eliminar</a>
-    <!-- Botón para volver a la lista de estudiantes -->
-    <a href="{% url 'estudiantes' %}" class="btn btn-secondary">Volver a la lista</a>
+    <!-- Botón para editar la nota -->
+    <a href="{% url 'nota-actualizar' object.pk %}" class="btn btn-primary">Editar</a>
+    <!-- Botón para eliminar la nota -->
+    <a href="{% url 'nota-eliminar' object.pk %}" class="btn btn-danger">Eliminar</a>
+    <!-- Botón para volver a la lista de notas -->
+    <a href="{% url 'notas' %}" class="btn btn-secondary">Volver a la lista</a>
   </div>
 {% endblock %}
