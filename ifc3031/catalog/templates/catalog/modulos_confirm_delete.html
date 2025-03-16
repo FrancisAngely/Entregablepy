@@ -1,0 +1,15 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h2>¿Estás seguro de que deseas eliminar el módulo "{{ object.nombre }}"?</h2>
+  
+  <p>Esta acción no se puede deshacer.</p>
+
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-actions">
+      <button type="submit" class="btn btn-danger">Eliminar</button>
+      <a href="{% url 'modulos' %}" class="btn btn-secondary">Cancelar</a>
+    </div>
+  </form>
+{% endblock %}

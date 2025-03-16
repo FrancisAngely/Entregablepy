@@ -37,8 +37,7 @@ class Estudiante(models.Model):
         ]
 
     def get_absolute_url(self):
-        return reverse('estudiante-detalle', kwargs={'pk': self.pk})  # Redirige a la vista de detalle del estudiante
-
+        return reverse('estudiante-detalle', kwargs={'pk': self.pk}) 
     def __str__(self):
         return f'{self.primer_nombre} {self.apellido}'
 

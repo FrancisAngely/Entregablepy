@@ -3,6 +3,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+
+from catalog.forms import EstudianteForm
 from .models import Estudiante, Modulo, Nota, Usuario, Rol  # Ajustamos según los modelos
 
 # Listado de roles
@@ -84,8 +86,9 @@ class EstudianteDetailView(DetailView):
 # Crear estudiante
 class EstudianteCreate(CreateView):
     model = Estudiante
-    fields = ['primer_nombre', 'apellido']  
+    form_class = EstudianteForm
     template_name = 'catalog/estudiante_form.html'
+    success_url = reverse_lazy('estudiantes') 
 
 # Actualizar estudiante
 class EstudianteUpdate(UpdateView):
@@ -99,71 +102,65 @@ class EstudianteDelete(DeleteView):
     template_name = 'catalog/estudiante_confirm_delete.html'
     success_url = reverse_lazy('estudiantes')
 
-
-
-
-
-
-
-
-
 # Listado de módulos
 class ModuloListView(ListView):
     model = Modulo
-    template_name = 'modulos/modulo_list.html'
+    template_name = 'catalog/modulos_list.html'
+    context_object_name = 'modulos'  # Cambiamos el nombre del contexto
 
 # Detalle de módulo
 class ModuloDetailView(DetailView):
     model = Modulo
-    template_name = 'modulos/modulo_detail.html'
+    template_name = 'catalog/modulos_detail.html'
+
 
 # Crear módulo
 class ModuloCreate(CreateView):
     model = Modulo
-    fields = ['name']  # Ajustamos a 'name' del módulo
-    template_name = 'modulos/modulo_form.html'
+    fields = ['nombre']  # Ajustamos a 'name' del módulo
+    template_name = 'catalog/modulos_form.html'  # Nombre corregido
+    success_url = reverse_lazy('modulos')  # Redirige a la lista de módulos después de crear uno
 
 # Actualizar módulo
 class ModuloUpdate(UpdateView):
     model = Modulo
-    fields = ['name']  # Ajustamos a 'name' del módulo
-    template_name = 'modulos/modulo_form.html'
+    fields = ['nombre']  # Ajustamos a 'name' del módulo
+    template_name = 'catalog/modulos_update.html'
+    success_url = reverse_lazy('modulos')  # Redirigir a la lista de módulos después de actualizar
 
 # Eliminar módulo
 class ModuloDelete(DeleteView):
     model = Modulo
-    template_name = 'modulos/modulo_confirm_delete.html'
-    success_url = reverse_lazy('modulos')
-
-
+    template_name = 'catalog/modulos_confirm_delete.html'
+    success_url = reverse_lazy('modulos')  # Redirigir a la lista de módulos después de eliminar
 
 
 # Listado de notas
 class NotaListView(ListView):
     model = Nota
-    template_name = 'notas/nota_list.html'
+    template_name = 'catalog/nota_list.html'
 
 # Detalle de nota
 class NotaDetailView(DetailView):
     model = Nota
-    template_name = 'notas/nota_detail.html'
+    template_name = 'catalog/nota_detail.html'
 
 # Crear nota
 class NotaCreate(CreateView):
     model = Nota
     fields = ['student', 'module', 'grade']  # Definimos los campos correspondientes
-    template_name = 'notas/nota_form.html'
+    template_name = 'catalog/nota_form.html'
 
 # Actualizar nota
 class NotaUpdate(UpdateView):
     model = Nota
     fields = ['student', 'module', 'grade']  # Definimos los campos correspondientes
-    template_name = 'notas/nota_form.html'
+    template_name = 'catalog/nota_update.html'
 
 # Eliminar nota
 class NotaDelete(DeleteView):
     model = Nota
-    template_name = 'notas/nota_confirm_delete.html'
+    template_name = 'catalog/nota_confirm_delete.html'
     success_url = reverse_lazy('notas')
 
 from django.shortcuts import render
@@ -187,6 +184,3 @@ def index(request):
 
     return render(request, 'index.html', context)
 
-
-def index(request):
-    return render(request, 'index.html') 

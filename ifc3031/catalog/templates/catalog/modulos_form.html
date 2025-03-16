@@ -1,0 +1,37 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+  <h2>{% if object %}Actualizar Módulo{% else %}Crear Módulo{% endif %}</h2>
+  
+  <form method="post">
+    {% csrf_token %}
+    
+    <!-- Mostrar errores de validación del formulario -->
+    {% if form.errors %}
+    <div class="alert alert-danger">
+        <strong>¡Error!</strong> Por favor, corrige los siguientes errores:
+        <ul>
+            {% for field, errors in form.errors.items %}
+                {% for error in errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <!-- Campo para el nombre del módulo -->
+    <div class="form-group">
+      <label for="{{ form.nombre.id_for_label }}">Nombre del Módulo</label>
+      {{ form.nombre }}
+      <!-- <p class="help-text">Ingrese el nombre del módulo.</p> -->
+    </div>
+    <br>
+
+    <!-- Botones de acción -->
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">{% if object %}Actualizar{% else %}Crear{% endif %} Módulo</button>
+      <a href="{% url 'modulos' %}" class="btn btn-secondary">Cancelar</a>
+    </div>
+  </form>
+{% endblock %}
