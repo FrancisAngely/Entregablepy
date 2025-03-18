@@ -92,7 +92,7 @@ DATABASES = {
 		'USER': 'root',
 		'PASSWORD': '',
 		'HOST':'localhost',
-		'PORT':'3307',
+		'PORT':'3306',
 	}
 }
 
@@ -146,4 +146,7 @@ EMAIL_HOST_USER = ''  # Nombre de usuario, si es necesario
 EMAIL_HOST_PASSWORD = ''  # Contraseña, si es necesario
 
 
+
+LOGIN_URL = '/accounts/login/'  
+LOGIN_REDIRECT_URL = '/'
 
